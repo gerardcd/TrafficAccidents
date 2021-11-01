@@ -14,6 +14,7 @@ class AccidentsScrapper:
 	def scrap(self):
 		database = Database()
 		with database:
+			database.write_header()
 			self.get_data(database)
 
 	def get_data(self, database):
