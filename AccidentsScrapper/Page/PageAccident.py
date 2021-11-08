@@ -10,7 +10,7 @@ class PageAccident(Page):
 		super().__init__(url)
 
 	def get_data(self):
-
+		# S'obtenen les dades de l'accident de la pàgina semiestructurada
 		data = {
 			"titol_accident": self.find_titol(),
 			"data_publicacio": self.find_data_publicacio(),
@@ -26,24 +26,33 @@ class PageAccident(Page):
 		return data
 
 	def find_titol(self):
+		# Es troba el títol de l'accident, eliminant els espais en blanc i els salts de línia que hi puguin haver al principi i al final
 		titol = self.soup.find("h1", {"class": "NG-menu__title"}).text
 		return re.sub(r"(^(\n|\t|\s)*)|(((\n|\t|\s)*)$)", "", titol)
 
 	def find_data_publicacio(self):
+		# Es troba la data de publicació de la nota de premsa
 		return self.soup.find("div", {"class": "noticia_detalls_cont"}).findAll("span")[0].text
 
 	def find_hora_publicacio(self):
+		# Es troba l'hora de publicació de la nota de premsa
 		return self.soup.find("div", {"class": "noticia_detalls_cont"}).findAll("span")[1].text
 
+	# Funció per a trobar continguts usant expressions regulars
 	def find_regex(self, regex, keyword=None):
+
+		# S'obte el contingut textual de l'accident
 		text = self.soup.find("div", {"class": "basic_text_peq"}).text
 
+		# Es comprova la presència d'una paraula clau (opcional per a camps que no estan sempre presents)
 		if (keyword is not None) and (keyword not in text):
 			return "N/A"
 
 		try:
+			# Es busca el contingut mitjançant l'expressió regular
 			match = re.match(regex, text)
 
+			# Es retorna el resultat del grup coincident amb nom data (ha d'estar present a l'expressió regular)
 			return match.group("data")
 
 		except:
