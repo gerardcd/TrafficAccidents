@@ -1,8 +1,8 @@
-from AccidentsScrapper.Page.PageYearsIndex import PageYearsIndex
-from AccidentsScrapper.Page.PageYearAccidents import PageYearAccidents
-from AccidentsScrapper.Page.PageAccident import PageAccident
+from src.AccidentsScrapper.Page.PageYearsIndex import PageYearsIndex
+from src.AccidentsScrapper.Page.PageYearAccidents import PageYearAccidents
+from src.AccidentsScrapper.Page.PageAccident import PageAccident
 
-from Database import Database
+from src.Database import Database
 
 INDEX_URL = "/ca/el_servei/premsa_i_comunicacio/comunicats_d_accidents_mortals/"
 

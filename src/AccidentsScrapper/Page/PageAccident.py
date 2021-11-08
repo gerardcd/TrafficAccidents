@@ -2,7 +2,7 @@
 
 import re
 
-from AccidentsScrapper.Page import Page
+from src.AccidentsScrapper.Page import Page
 
 
 class PageAccident(Page):
